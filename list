@@ -1,0 +1,60 @@
+ #-*- coding: utf-8 -*-
+import os
+import glob
+import pandas as pd
+import io
+import csv
+from pandas import DataFrame
+          #list tvoreny sloupci v tabulce
+
+
+list1 = ["Symbols", "Creation", "Date", "Amount", "VAT", "Payment Type", "IsPayed"]
+
+          #cesta, kde mam samotny soubory
+os.chdir("/home/darskki/Plocha/Heureka/inp/")
+
+
+          #find all csv files in the folder
+          #use glob pattern matching -> extension = 'csv'
+          #ulozi 'csv' soubory do listu -> all_filenames
+
+extension = 'csv'
+new_list = []
+all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
+
+for file in all_filenames:
+    if os.stat(file).st_size != 0:
+        df = pd.read_csv(file, index_col=None).columns.values
+        # dfa = pd.DataFrame(df, columns=["Symbols", "Creation", "Date", "Amount", "VAT", "Payment Type", "IsPayed"])
+        print(df)
+        # 
+        # new_list.append(df.columns.tolist())
+        # print(df.columns.tolist())
+
+###################################################################
+# frame = pd.DataFrame(new_list)
+
+# frame.columns = ["Symbols", "Creation", "Date", "Amount", "VAT", "Payment Type", "IsPayed"]
+# frame
+# result = [ele for ele in new_list if ele !=[]]
+# print(result)
+####################################################################
+
+
+          #combiprint(new_list)
+combined_csv = pd.concat([pd.read_csv(f) for f in all_filenames])
+
+          #export to csv
+combined_csv.to_csv( "combined_csv.csv", index=False, encoding='utf-8-sig')
+
+print(combined_csv)
+          # combine all files in the list
+
+combined_csv = pd.concat(
+    [pd.read_csv(io.StringIO(f) , skip_blank_lines=True) for f in all_filenames])
+if len(combined_csv)>0:
+    print(combined_csv, "AA")
+
+          #export to csv
+combined_csv.to_csv("VYSLEDEK.csv", index=False, encoding='utf-8-sig')
+
