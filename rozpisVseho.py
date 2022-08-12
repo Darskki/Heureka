@@ -68,7 +68,7 @@ for file in all_filenames:
             if len(row) == 0:
                 continue
 
-        print("hovno")
+        print("funguje")
 
 
         # empty_list.append(df)
