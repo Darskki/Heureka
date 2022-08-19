@@ -10,4 +10,4 @@ Write the script (and add to Gitlab) which is able to process these files and cr
 5) Measure the script’s performance and find how to optimize it
 ----
 Zkus využít faktu, že už názvy souborů obsahují datum a čas v podobě timestampu
-Není Pandas trochu overkill? Co zkusit raději modul csv viz https://www.programiz.com/python-programming/reading-csv-files
+Zkusil bych systém absolutních cest k souborům nahradit relativníma. Není Pandas trochu overkill? Co zkusit raději modul csv viz https://www.programiz.com/python-programming/reading-csv-files
